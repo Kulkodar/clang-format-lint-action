@@ -51,4 +51,4 @@ runs:
     - --sources
     - ${{ inputs.source }}
     - --files
-    - "${{ inputs.files }}"
+    - ${{ inputs.files }}
