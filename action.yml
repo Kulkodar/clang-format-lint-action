@@ -9,6 +9,10 @@ inputs:
     description: 'Source folder to check formatting'
     required: false
     default: '.'
+  files:
+    description: 'Files to check formatting overrides source'
+    required: false
+    default: ''
   exclude:
     description: 'Folder to exclude from formatting check'
     required: false
@@ -44,4 +48,7 @@ runs:
     - ${{ inputs.extensions }}
     - --exclude
     - ${{ inputs.exclude }}
+    - --sources
     - ${{ inputs.source }}
+    - --files
+    - \"${{ inputs.files }}\"

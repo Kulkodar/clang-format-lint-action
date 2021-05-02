@@ -268,7 +268,8 @@ def main():
         '--recursive',
         action='store_true',
         help='run recursively over directories')
-    parser.add_argument('files', metavar='file', nargs='+')
+    parser.add_argument('--sources', metavar='file', nargs='+')
+    parser.add_argument('--files', metavar='file')
     parser.add_argument(
         '-q',
         '--quiet',
@@ -348,11 +349,16 @@ def main():
     excludes = excludes_from_file(DEFAULT_CLANG_FORMAT_IGNORE)
     excludes.extend(split_list_arg(args.exclude))
 
-    files = list_files(
-        split_list_arg(args.files),
-        recursive=args.recursive,
-        exclude=excludes,
-        extensions=args.extensions.split(','))
+    files = []
+    if args.files == "": #search files only if not explicitly specified
+        files = list_files(
+            split_list_arg(args.sources),
+            recursive=args.recursive,
+            exclude=excludes,
+            extensions=args.extensions.split(','))
+    else:
+        files = args.files.split(',')
+
 
     if not files:
         print_trouble(parser.prog, 'No files found', use_colors=colored_stderr)
