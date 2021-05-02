@@ -357,7 +357,7 @@ def main():
             exclude=excludes,
             extensions=args.extensions.split(','))
     else:
-        files = args.files.split(',')
+        files = args.files.strip(',')split(',')
 
 
     if not files:
