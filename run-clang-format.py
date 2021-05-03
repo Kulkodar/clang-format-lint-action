@@ -349,6 +349,9 @@ def main():
     excludes = excludes_from_file(DEFAULT_CLANG_FORMAT_IGNORE)
     excludes.extend(split_list_arg(args.exclude))
 
+    print("pwd={}".format(os.getcwd()))
+    print(os.listdir(path="."))
+
     files = []
     if args.files == "": #search files only if not explicitly specified
         files = list_files(
@@ -357,7 +360,12 @@ def main():
             exclude=excludes,
             extensions=args.extensions.split(','))
     else:
-        files = args.files.strip(',')split(',')
+        for f in args.files.strip(',').split(','):
+            ext = os.path.splitext(f)[1][1:]
+            if ext in args.extensions.split(','):
+                files.append(f)
+        # for file in files:
+        #     file = "./"+file
 
 
     if not files:

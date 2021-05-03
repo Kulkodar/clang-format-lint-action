@@ -14,7 +14,7 @@ Example: './src' or '"src test examples"' for multiple.
 
 A comma separated list of files to format. Overrides the `source` option\
 Default: '""' empty string\
-Example: './src/main.cpp,./src/file.cpp'
+Example: 'src/main.cpp,src/file.cpp'
 
 ### `exclude`
 
