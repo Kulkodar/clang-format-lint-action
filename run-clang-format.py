@@ -350,7 +350,7 @@ def main():
     excludes.extend(split_list_arg(args.exclude))
 
     print("pwd={}".format(os.getcwd()))
-    print(os.listdir(path="."))
+    print(os.listdir(path="src"))
 
     files = []
     if args.files == "": #search files only if not explicitly specified
@@ -359,13 +359,13 @@ def main():
             recursive=args.recursive,
             exclude=excludes,
             extensions=args.extensions.split(','))
-    else:
+    else: # todo exclude excluded folders
         for f in args.files.strip(',').split(','):
             ext = os.path.splitext(f)[1][1:]
             if ext in args.extensions.split(','):
                 files.append(f)
-        # for file in files:
-        #     file = "./"+file
+        for file in files:
+            file = "./"+file
 
 
     if not files:
