@@ -357,12 +357,11 @@ def main():
             exclude=excludes,
             extensions=args.extensions.split(','))
     else: # todo exclude excluded folders
-        for f in args.files.strip(',').split(','):
-            ext = os.path.splitext(f)[1][1:]
-            if ext in args.extensions.split(','):
-                files.append(f)
-        for i in range(len(files)):
-            files[i] = "./"+files[i]
+        for f in args.files.split(','):
+            if os.path.isfile(f):
+                ext = os.path.splitext(f)[1][1:]
+                if ext in args.extensions.split(','):
+                    files.append(f)
 
 
     if not files:
@@ -372,11 +371,6 @@ def main():
 
     if not args.quiet:
         print('Processing %s files: %s' % (len(files), ', '.join(files)))
-
-    print("pwd={}".format(os.getcwd()))
-    print(os.listdir(path="src"))
-    f=open(files[0],"r")
-    print(f.read())
 
     njobs = args.j
     if njobs == 0:
