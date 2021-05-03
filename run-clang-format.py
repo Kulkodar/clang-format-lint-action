@@ -369,11 +369,14 @@ def main():
         print_trouble(parser.prog, 'No files found', use_colors=colored_stderr)
         return ExitStatus.TROUBLE
 
-    f=open(files[0],"r")
-    print(f.read())
 
     if not args.quiet:
-      print('Processing %s files: %s' % (len(files), ', '.join(files)))
+        print('Processing %s files: %s' % (len(files), ', '.join(files)))
+
+    print("pwd={}".format(os.getcwd()))
+    print(os.listdir(path="src"))
+    f=open(files[0],"r")
+    print(f.read())
 
     njobs = args.j
     if njobs == 0:
