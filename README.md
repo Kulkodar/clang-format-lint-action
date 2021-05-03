@@ -10,6 +10,12 @@ Where the source files are located.\
 Default: '.' (current folder)\
 Example: './src' or 'src test examples' for multiple.
 
+### `files`
+
+A comma separated list of files to format. Overrides the `source` option\
+Default: '' empty string\
+Example: './src/main.cpp,./src/file.cpp'
+
 ### `exclude`
 
 What folder should be excluded from format checking.\
